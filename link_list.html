@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コンテンツ・ナビゲーター | Antigravity</title>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #2563eb;
+            --accent-soft: #dbeafe;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .card.local::before {
+            background: var(--warning);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .local .icon {
+            color: var(--warning);
+        }
+
+        .link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .link-row {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #fafafa;
+        }
+
+        .link-row:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+            transform: translateX(4px);
+        }
+
+        .link-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .link-label {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 99px;
+            text-transform: uppercase;
+        }
+
+        .badge-live {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-file {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-local {
+            background: #ffedd5;
+            color: #9a3412;
+        }
+
+        .url-text {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Content Navigator</h1>
+            <p class="subtitle">プロジェクト資産へのクイックアクセス</p>
+        </header>
+
+        <div class="grid">
+            <!-- LIVE SECTION -->
+            <div class="card">
+                <h2>
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2 2 2 0 012 2v.65M18 20.447V18a2 2 0 00-2-2h-1a2 2 0 01-2-2v-1a2 2 0 00-2-2H9.67a2 2 0 01-1.414-.586l-.828-.828A2 2 0 006 8.586V8c0-1.105.895-2 2-2h.5a2 2 0 012 2v.5a2 2 0 002 2h1a2 2 0 012 2l.707.707A2 2 0 0017.414 13H18a2 2 0 012 2v2.447m-1.618 2.906A10 10 0 1119.07 4.93">
+                        </path>
+                    </svg>
+                    Live (Netlify)
+                </h2>
+                <div class="link-group">
+                    <a href="https://splendid-kelpie-ee20ea.netlify.app/lp_price_diagnosis.html" class="link-row"
+                        target="_blank">
+                        <div class="link-header">
+                            <span class="link-label">適正単価診断LP</span>
+                            <span class="status-badge badge-live">Live Page</span>
+                        </div>
+                        <div class="url-text">https://splendid-kelpie-ee20ea.netlify.app/lp_price_diagnosis.html</div>
+                    </a>
+                    <a href="https://splendid-kelpie-ee20ea.netlify.app/email_hook_price_check.html" class="link-row"
+                        target="_blank">
+                        <div class="link-header">
+                            <span class="link-label">ナーチャリングメール</span>
+                            <span class="status-badge badge-live">HTML Mail</span>
+                        </div>
+                        <div class="url-text">https://splendid-kelpie-ee20ea.netlify.app/email_hook_price_check.html
+                        </div>
+                    </a>
+                    <a href="https://splendid-kelpie-ee20ea.netlify.app/daily_news_log.md" class="link-row"
+                        target="_blank">
+                        <div class="link-header">
+                            <span class="link-label">ニュース管理表 (MD)</span>
+                            <span class="status-badge badge-file">Doc (MD)</span>
+                        </div>
+                        <div class="url-text">https://splendid-kelpie-ee20ea.netlify.app/daily_news_log.md</div>
+                    </a>
+                    <a href="https://splendid-kelpie-ee20ea.netlify.app/daily_news_dashboard.html" class="link-row"
+                        target="_blank">
+                        <div class="link-header">
+                            <span class="link-label">ニュース・ダッシュボード</span>
+                            <span class="status-badge badge-live">Live Page</span>
+                        </div>
+                        <div class="url-text">https://splendid-kelpie-ee20ea.netlify.app/daily_news_dashboard.html</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- LOCAL SECTION -->
+            <div class="card local">
+                <h2>
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Local (手元確認)
+                </h2>
+                <div class="link-group">
+                    <a href="file:///c:/Users/abe.ren/Desktop/Antigravity/イベント_ナーチャリング/lp_price_diagnosis.html"
+                        class="link-row">
+                        <div class="link-header">
+                            <span class="link-label">適正単価診断LP</span>
+                            <span class="status-badge badge-local">Local Path</span>
+                        </div>
+                        <div class="url-text">file:///.../lp_price_diagnosis.html</div>
+                    </a>
+                    <a href="file:///c:/Users/abe.ren/Desktop/Antigravity/イベント_ナーチャリング/email_hook_price_check.html"
+                        class="link-row">
+                        <div class="link-header">
+                            <span class="link-label">ナーチャリングメール</span>
+                            <span class="status-badge badge-local">Local Path</span>
+                        </div>
+                        <div class="url-text">file:///.../email_hook_price_check.html</div>
+                    </a>
+                    <a href="file:///c:/Users/abe.ren/Desktop/Antigravity/イベント_ナーチャリング/daily_news_log.md"
+                        class="link-row">
+                        <div class="link-header">
+                            <span class="link-label">ニュース管理表 (MD)</span>
+                            <span class="status-badge badge-local">Local Path</span>
+                        </div>
+                        <div class="url-text">file:///.../daily_news_log.md</div>
+                    </a>
+                    <a href="file:///c:/Users/abe.ren/Desktop/Antigravity/イベント_ナーチャリング/daily_news_dashboard.html"
+                        class="link-row">
+                        <div class="link-header">
+                            <span class="link-label">ニュース・ダッシュボード</span>
+                            <span class="status-badge badge-local">Local Path</span>
+                        </div>
+                        <div class="url-text">file:///.../daily_news_dashboard.html</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Antigravity Marketing Content Kit
+        </div>
+    </div>
+</body>
+
+</html>

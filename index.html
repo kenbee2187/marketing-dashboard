@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Command Hub | Antigravity</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --accent-soft: #eff6ff;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* Dashboard Grid */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .hub-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .hub-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .hub-card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary);
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .hub-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-link {
+            display: block;
+            text-align: center;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .btn-link:hover {
+            background: #1d4ed8;
+        }
+
+        /* Asset Table */
+        .management-section {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .management-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--primary);
+        }
+
+        .asset-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .asset-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: #f1f5f9;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .asset-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .asset-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .asset-name {
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .asset-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-html {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-md {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .action-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .action-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* News Preview Styles */
+        .news-preview-list {
+            margin: 15px 0 25px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .news-preview-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .news-preview-item:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .preview-date {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .preview-title {
+            font-weight: 700;
+            color: var(--primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .hub-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .asset-table thead {
+                display: none;
+            }
+
+            .asset-table td {
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Marketing Command Hub</h1>
+            <p class="subtitle">ナーチャリング施策の現状把握と資産管理を一元化</p>
+        </header>
+
+        <!-- TOP PILLARS -->
+        <div class="hub-grid">
+            <!-- 01: Strategy -->
+            <div class="hub-card">
+                <h2>
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7">
+                        </path>
+                    </svg>
+                    戦略マスターボード
+                </h2>
+                <p>全25カテゴリーの深層心理、悩み、解決策をマッピングした「施策のバイブル」です。</p>
+                <a href="strategy_dashboard.html" class="btn-link">ボードを開く</a>
+            </div>
+
+            <!-- 02: News -->
+            <div class="hub-card">
+                <h2>
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 2v4a2 2 0 002 2h4">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h3m-3 4h7m-7 4h7">
+                        </path>
+                    </svg>
+                    ニュース一覧表
+                </h2>
+                <div class="news-preview-list" id="recentNewsPreview">
+                    <!-- JS will load latest 3 items here -->
+                </div>
+                <a href="daily_news_dashboard.html" class="btn-link">ダッシュボードを開く</a>
+            </div>
+
+            <!-- 03: Performance -->
+            <div class="hub-card">
+                <h2>
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                        </path>
+                    </svg>
+                    コンテンツ管理表
+                </h2>
+                <p>現在作成済みのLPやメールテンプレートの一覧と、それらの公開状況を管理します。</p>
+                <a href="#assets" class="btn-link">資産一覧へ</a>
+            </div>
+        </div>
+
+        <!-- CONTENT MANAGEMENT TABLE -->
+        <div id="assets" class="management-section">
+            <h3>コンテンツ管理表 (Assets)</h3>
+            <table class="asset-table">
+                <thead>
+                    <tr>
+                        <th>アセット名</th>
+                        <th>形式</th>
+                        <th>説明</th>
+                        <th>リンク</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="asset-name">適正単価診断LP</span>
+                            <span class="asset-desc">lp_price_diagnosis.html</span>
+                        </td>
+                        <td><span class="badge badge-html">HTML</span></td>
+                        <td>時事ニュース（日経等）をフックにした単価診断用LP</td>
+                        <td><a href="lp_price_diagnosis.html" class="action-link">表示</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="asset-name">ナーチャリングメール</span>
+                            <span class="asset-desc">email_hook_price_check.html</span>
+                        </td>
+                        <td><span class="badge badge-html">HTML</span></td>
+                        <td>ニュースからLPへ誘導するためのメールテンプレート</td>
+                        <td><a href="email_hook_price_check.html" class="action-link">表示</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="asset-name">ニュース・ダッシュボード</span>
+                            <span class="asset-desc">daily_news_dashboard.html</span>
+                        </td>
+                        <td><span class="badge badge-html">HTML</span></td>
+                        <td>最新ITニュースの可視化と解析（蓄積対応）</td>
+                        <td><a href="daily_news_dashboard.html" class="action-link">表示</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="asset-name">ニュース更新ログ (MD)</span>
+                            <span class="asset-desc">daily_news_log.md</span>
+                        </td>
+                        <td><span class="badge badge-md">Markdown</span></td>
+                        <td>ニュースと戦略IDのマッピング（生データ）</td>
+                        <td><a href="daily_news_log.md" class="action-link">表示</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="asset-name">戦略マスターボード</span>
+                            <span class="asset-desc">strategy_dashboard.html</span>
+                        </td>
+                        <td><span class="badge badge-html">HTML</span></td>
+                        <td>25カテゴリーのターゲット選定と訴求プラン</td>
+                        <td><a href="strategy_dashboard.html" class="action-link">表示</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Antigravity Marketing Toolkit | LANCERS TECH AGENT
+        </div>
+    </div>
+    <!-- Latest News Integration -->
+    <script src="news_data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const previewContainer = document.getElementById('recentNewsPreview');
+            if (typeof newsData !== 'undefined' && newsData.length > 0) {
+                // Latest 3
+                const latest = newsData.slice(-3).reverse();
+                previewContainer.innerHTML = latest.map(item => `
+                    <div class="news-preview-item">
+                        <span class="preview-date">${item.date}</span>
+                        <div class="preview-title">${item.title}</div>
+                    </div>
+                `).join('');
+            } else {
+                previewContainer.innerHTML = '<p style="font-size:0.85rem; color:var(--text-muted); padding:10px;">ニュースがまだありません。</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>

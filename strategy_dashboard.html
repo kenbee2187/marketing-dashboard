@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ナーチャリング戦略マスターボード Ver 3.0 Full | Lancers Tech Agent</title>
+    <style>
+        :root {
+            --primary: #17376b;
+            --accent: #f04e23;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+            --pain: #e53e3e;
+            --solution: #38a169;
+            --persona: #3182ce;
+        }
+
+        body {
+            font-family: "Inter", "system-ui", "-apple-system", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(23, 55, 107, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .version-badge {
+            background: var(--accent);
+            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 25px;
+        }
+
+        .strategy-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .entry-id {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .entry-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0;
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .persona-section {
+            background: #ebf8ff;
+            border-left: 4px solid var(--persona);
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .persona-text {
+            font-size: 0.85rem;
+            color: var(--persona);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .pillar {
+            font-size: 0.8rem;
+        }
+
+        .pillar h4 {
+            margin: 0 0 10px 0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .pillar-pain h4 {
+            color: var(--pain);
+        }
+
+        .pillar-solution h4 {
+            color: var(--solution);
+        }
+
+        .list {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .list li {
+            margin-bottom: 4px;
+        }
+
+        .pillar-pain li {
+            color: #c53030;
+        }
+
+        .pillar-solution li {
+            color: #2f855a;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 50px;
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pillar-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>ナーチャリング戦略マスターボード <span class="version-badge">Ver 3.0 Full</span></h1>
+            <p style="margin-top: 10px; opacity: 0.9;">全25カテゴリー・深層心理マッピング（悩み & 解決策 完全版）</p>
+        </header>
+
+        <div class="controls">
+            <div>
+                <span style="font-weight: bold; color: var(--primary);">Comprehensive 25 Points Strategy Grid</span>
+            </div>
+            <input type="text" class="search-box" id="search" placeholder="キーワードで検索...">
+        </div>
+
+        <div class="strategy-grid" id="grid">
+            <!-- 01 -->
+            <div class="strategy-card" id="entry-01">
+                <div class="card-header">
+                    <h3 class="entry-title">高単価・単価アップ</h3>
+                    <div class="entry-id">01</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">経験3〜8年。現場評価は高いが、報酬が停滞し「中抜き」に不満を持つ中堅層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>スキル向上と報酬が連動しない</li>
+                            <li>知人との年収格差に焦る</li>
+                            <li>自分の「適正単価」が不明</li>
+                            <li>エージェントの交渉力に不信感</li>
+                            <li>実績が正当に単価反映されない</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>実績書リライトで単価15%UP</li>
+                            <li>企業の「裏予算」に基づく交渉</li>
+                            <li>精密な「市場報酬診断」の提供</li>
+                            <li>単価を上げる短期キャリア設計</li>
+                            <li>強みを引き出すレジュメ作成伴走</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 02 -->
+            <div class="strategy-card" id="entry-02">
+                <div class="card-header">
+                    <h3 class="entry-title">AI・最先端技術案件</h3>
+                    <div class="entry-id">02</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">Webエンジニア。AIブームの中で「このままでは淘汰される」と危機感を持つ層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>実務経験なしで門前払いされる</li>
+                            <li>独学が実務に繋がるイメージ希薄</li>
+                            <li>数学的な高度知識への恐怖感</li>
+                            <li>レガシー現場で試行機会がゼロ</li>
+                            <li>何から手を付けていいか不安</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>Web技術×AI周辺実装の提案</li>
+                            <li>「AIプロダクト開発」の新市場提示</li>
+                            <li>AI参画用の実績書作成指導</li>
+                            <li>先端開発文化を持つ企業の厳選</li>
+                            <li>LLM連携案件の優先マッチング</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 03 -->
+            <div class="strategy-card" id="entry-03">
+                <div class="card-header">
+                    <h3 class="entry-title">節税・手取り最大化</h3>
+                    <div class="entry-id">03</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">月収80万超。税金・保険料の重さに気づき「手元に残る金」を最大化したい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>昇給しても手取りが変わらぬ</li>
+                            <li>インボイスでの実質的減収</li>
+                            <li>法人成りのタイミングが不明</li>
+                            <li>確定申告の事務負担が重い</li>
+                            <li>経費計上のラインが不安</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>法人vs個人の損得シミュ提供</li>
+                            <li>エンジニア専門の節税ガイド</li>
+                            <li>提携税理士による記帳サポート</li>
+                            <li>社保適正化・共済フル活用術</li>
+                            <li>手取り最大化の個別診断</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 04 -->
+            <div class="strategy-card" id="entry-04">
+                <div class="card-header">
+                    <h3 class="entry-title">エンド直・商流改善</h3>
+                    <div class="entry-id">04</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">二次請け以下で働き、中抜きへの不満と意思決定権のなさにストレスを感じる層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>中間会社の中抜きが許せない</li>
+                            <li>エンドの声が届かず実感が薄い</li>
+                            <li>多重バイパスで情報の劣化と遅延</li>
+                            <li>現場で常に「外様」扱いされる</li>
+                            <li>報酬上限が商流に阻まれている</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>エンド直・一次請け案件の限定紹介</li>
+                            <li>商流改善で月5〜15万の増額</li>
+                            <li>POと直接議論できる開発環境</li>
+                            <li>ビジネス視点を磨ける現場体験</li>
+                            <li>透明性の高いマージン公開</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 05 -->
+            <div class="strategy-card" id="entry-05">
+                <div class="card-header">
+                    <h3 class="entry-title">モダン技術への移行</h3>
+                    <div class="entry-id">05</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">Java/PHP等のレガシー環境に数年定着し、Go/TS等へ移りたいが経験不足で弾かれる人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>レガシー保守ばかりで成長停止</li>
+                            <li>Go/TS等の経験年数不足で落選</li>
+                            <li>独学と実務のギャップに悩む</li>
+                            <li>技術的負債だらけの現場に疲弊</li>
+                            <li>市場から取り残される恐怖感</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>リプレイス案件からの移行戦略</li>
+                            <li>設計能力をモダン環境で売る提案</li>
+                            <li>キャッチアップ期間を許容する企業</li>
+                            <li>モダンスタックへの転向ロードマップ</li>
+                            <li>言語移行時の単価維持交渉</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 06 -->
+            <div class="strategy-card" id="entry-06">
+                <div class="card-header">
+                    <h3 class="entry-title">週3・週4日稼働</h3>
+                    <div class="entry-id">06</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">高生産性スキルを持ち、副業や学習、私生活のために拘束時間を減らしたいシニア層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>フルタイムでの時間的ゆとりゼロ</li>
+                            <li>稼働を減らすと低バリュー扱いに</li>
+                            <li>副業立ち上げに注力したいが困難</li>
+                            <li>「時間切り」の働き方に限界</li>
+                            <li>ライフスタイルの変化に追いつけない</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>高単価×週3〜の効率案件の紹介</li>
+                            <li>成果重視の柔軟なプロ契約</li>
+                            <li>複数案件の掛け持ちスタイルの支援</li>
+                            <li>責任範囲を絞ったハイブリッド参画</li>
+                            <li>生産性を価値に変える報酬設計</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 07 -->
+            <div class="strategy-card" id="entry-07">
+                <div class="card-header">
+                    <h3 class="entry-title">PM・職種シフト</h3>
+                    <div class="entry-id">07</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">実装一本のキャリアに不安を感じ、マネジメントや上流工程へ軸足を広げたいエンジニア。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>実装体力への将来的な不安</li>
+                            <li>リーダー経験を積む機会が社にない</li>
+                            <li>役割を変える際の年収ダウン懸念</li>
+                            <li>調整業務ばかり増えることの抵抗</li>
+                            <li>市場価値の「詰まり」を感じている</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>技術を武器にするテクニカルPM</li>
+                            <li>PLからの段階的なシフト案件</li>
+                            <li>マネージャー・リーダー養成支援</li>
+                            <li>役割変更による高報酬レンジの実現</li>
+                            <li>開発知識を活かした要件定義案件</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 08 -->
+            <div class="strategy-card" id="entry-08">
+                <div class="card-header">
+                    <h3 class="entry-title">安定稼働・継続性</h3>
+                    <div class="entry-id">08</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">契約終了ごとの案件探しに精神を削られており、長期的に同じ現場で安定して稼ぎたい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>契約切れ2ヶ月前からの慢性的不安</li>
+                            <li>案件空白期間による無収入の恐怖</li>
+                            <li>頻繁な履歴書更新・面談の重荷</li>
+                            <li>現場が変わるたびの新人扱いへの疲れ</li>
+                            <li>安定した生活設計が立てにくい</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>更新率90%超の長期優良案件</li>
+                            <li>終了決定前のシームレスな次提案</li>
+                            <li>エージェントによる継続交渉代行</li>
+                            <li>長期参画によるドメイン知識の評価</li>
+                            <li>収入途絶リスクの最小化サポート</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 09 -->
+            <div class="strategy-card" id="entry-09">
+                <div class="card-header">
+                    <h3 class="entry-title">地雷回避・環境品質</h3>
+                    <div class="entry-id">09</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">炎上案件の経験があり、報酬よりも技術的健全さや開発文化の質を最優先する人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>面談詐欺（言動不一致な現場）</li>
+                            <li>非効率・古い開発文化の苦痛</li>
+                            <li>理不尽な納期と常態化する残業</li>
+                            <li>技術的負債による負のスパイラル</li>
+                            <li>心理的安全性のないぎすぎすした場</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>エージェントによる現場の徹底調査</li>
+                            <li>モダンツール導入状況の事前開示</li>
+                            <li>無理な残業を抑制する契約監理</li>
+                            <li>離職率や現場の「本当の評判」共有</li>
+                            <li>不当な扱いへのエージェント介入</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="strategy-card" id="entry-10">
+                <div class="card-header">
+                    <h3 class="entry-title">40代〜の生存戦略</h3>
+                    <div class="entry-id">10</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">シニア層。速さよりも「経験の深さ」や「組織課題解決」を報酬に変えたい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>年齢による自動的な書類落ち</li>
+                            <li>若手との実装スピード比較の消耗</li>
+                            <li>作業者としてのキャリア限界点</li>
+                            <li>枯れた技術の使い手としての不安</li>
+                            <li>次世代への継承機会の欠如</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>経験を「知見・顧問」で売る戦略</li>
+                            <li>特定ドメインのシニア需要へのマッチ</li>
+                            <li>教育・内製化支援によるバリュー化</li>
+                            <li>いぶし銀な設計・アーキ職の提案</li>
+                            <li>年齢不問・実力重視企業の厳選</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="strategy-card" id="entry-11">
+                <div class="card-header">
+                    <h3 class="entry-title">フルリモート・地方移住</h3>
+                    <div class="entry-id">11</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">満員電車や都市コストに疲弊。地方でも東京水準の単価を維持して働きたい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>不毛な通勤時間への強い嫌悪</li>
+                            <li>地方移住による単価・技術低下懸念</li>
+                            <li>リモート孤立感と熱量の減衰</li>
+                            <li>「出社あり」への回帰要求の恐怖</li>
+                            <li>住居コストと収入のミスマッチ</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>100%フルリモート固定案件の確約</li>
+                            <li>地方在住での東京単価100%支給</li>
+                            <li>非同期・洗練されたリモートチーム</li>
+                            <li>ワーケーション推奨・自由な風土</li>
+                            <li>場所の制約を完全に排除した紹介</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12 -->
+            <div class="strategy-card" id="entry-12">
+                <div class="card-header">
+                    <h3 class="entry-title">エンジニア・ファースト</h3>
+                    <div class="entry-id">12</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">営業主導組織で「開発は単なるコスト」扱いに疲れ、技術の正論が通る場を求める人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>無理な納期のための休日出勤</li>
+                            <li>技術負債返済への無理解と拒絶</li>
+                            <li>多すぎる会議と少ない開発時間</li>
+                            <li>低質な開発機材・環境への非投資</li>
+                            <li>「とりあえず動く」優先の品質軽視</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>CTOの発言権が強い組織の紹介</li>
+                            <li>負債解消がスプリント計画に組み込み</li>
+                            <li>最高スペックPC・椅子の支給環境</li>
+                            <li>技術的投資（登壇、学習）への支援</li>
+                            <li>プロとしてのこだわりが尊重される場</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13 -->
+            <div class="strategy-card" id="entry-13">
+                <div class="card-header">
+                    <h3 class="entry-title">プロダクトオーナーシップ</h3>
+                    <div class="entry-id">13</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">「傭兵」的な働き方に疑問符。愛着を持ってサービスを育て、ビジネス貢献を実感したい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>作って終わり、ユーザーの反応不明</li>
+                            <li>自分の実装のビジネス貢献の不透明さ</li>
+                            <li>短期で現場を転々とする虚無感</li>
+                            <li>技術的提案が事業に入り込めない壁</li>
+                            <li>プロダクトの愛着が持てぬ受注関係</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>「事業成長パートナー」扱いの現場</li>
+                            <li>企画・UX・データ分析への参加権</li>
+                            <li>成長指標（KPI）に連動した高評価</li>
+                            <li>年単位でのコミット推奨の案件選定</li>
+                            <li>中の人として扱われるワンチーム文化</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14 -->
+            <div class="strategy-card" id="entry-14">
+                <div class="card-header">
+                    <h3 class="entry-title">メンター・教育支援</h3>
+                    <div class="entry-id">14</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">自身の経験を若手の育成に活かしたいシニア。SES等での教育バリューを評価してほしい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>若手を育てる時間の完全な欠如</li>
+                            <li>教育時間が進捗悪化と見なされる理不尽</li>
+                            <li>ベストプラクティスを遺せない欲求不満</li>
+                            <li>自分の技術知識が共有されず死んでいく</li>
+                            <li>「教える」バリューが報酬に入らない</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>「育成」をミッションに含む特別契約</li>
+                            <li>内製化支援・ジュニア育成の専任枠</li>
+                            <li>技術顧問的な立ち位置での教育伴走</li>
+                            <li>教育手法・仕組み作りの主導権提供</li>
+                            <li>育てる事で組織単価を上げるインセン</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 15 -->
+            <div class="strategy-card" id="entry-15">
+                <div class="card-header">
+                    <h3 class="entry-title">OSS貢献・発信推奨</h3>
+                    <div class="entry-id">15</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">技術発信を重視するが多忙で停止中。業務アウトプットを公開し、個人のブランドを上げたい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>業務成果が社外から一切見えず評価停滞</li>
+                            <li>公開許可を取るための膨大な社内コスト</li>
+                            <li>睡眠時間を削って行う個人のOSS活動</li>
+                            <li>発信を「無駄な時間」と見る古風な文化</li>
+                            <li>実力はあるのに知名度ゼロの焦り</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>業務中のOSS貢献を公式に認める現場</li>
+                            <li>記事執筆・登壇を「業務」としてフル評価</li>
+                            <li>個人のブランディングが会社の益と見る文化</li>
+                            <li>最新技術公開に積極的なテック企業厳選</li>
+                            <li>発信力を単価加点する報酬モデル</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16 -->
+            <div class="strategy-card" id="entry-16">
+                <div class="card-header">
+                    <h3 class="entry-title">自社開発・起業支援</h3>
+                    <div class="entry-id">16</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">将来起業・サービス創出したいエンジニア。独立の準備として経営術を学びたい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>いつまでも「誰かの夢」を手伝う焦り</li>
+                            <li>経営・資金調達の裏側が見えない環境</li>
+                            <li>自社アプリ開発と本業の両立の限界点</li>
+                            <li>ビジネススキルの欠如への漠然とした不安</li>
+                            <li>起業家マインドを持つ仲間との接点不足</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>起業家の側近での超アーリーステージ参画</li>
+                            <li>定時上がり・自社開発時間確保の確約</li>
+                            <li>経営・財務などのノウハウ共有コミュニティ</li>
+                            <li>シリアルアントレプレナー直属の案件</li>
+                            <li>将来の共同創業の種を見つける場</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 17 -->
+            <div class="strategy-card" id="entry-17">
+                <div class="card-header">
+                    <h3 class="entry-title">フルスタック・広域開発</h3>
+                    <div class="entry-id">17</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">分業を嫌い、アプリからインフラまで全レイヤーを一人で触り切りたい「何でも屋」志向。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>専門特化を強要され隣を触れぬもどかしさ</li>
+                            <li>全体最適が不可能な縦割り組織の不全</li>
+                            <li>「器用貧乏」を専門性欠如と低評価される不安</li>
+                            <li>特定領域の繰り返しによる知的好奇心の死</li>
+                            <li>システム全体の繋がりに確信を持てぬ不安</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>「一人一プロダクト」に近い広範な裁量</li>
+                            <li>フロント〜インフラを全横断する案件</li>
+                            <li>掛け合わせによる希少価値としての高報酬</li>
+                            <li>少数精鋭、全方位カバーが必須の現場紹介</li>
+                            <li>技術領域を自ら広げ続けられる柔軟な枠</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">英語・グローバルチーム</h3>
+                    <div class="entry-id">18</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">国内市場・トレンドに危機感。英語を使い世界基準の開発に触れたい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>日本語情報のみの技術一周遅れへの恐怖</li>
+                            <li>英語学習が実務に繋がらぬ宝の持ち腐れ</li>
+                            <li>国内のガラパゴスなレガシー開発手法への嫌悪</li>
+                            <li>多国籍な議論の場に混ざれぬ自身の閉鎖性</li>
+                            <li>将来の海外シフトへの準備不足への焦り</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>英語公用語の国内有力スタートアップ案件</li>
+                            <li>海外拠点メンバーとの多国籍分散チーム</li>
+                            <li>グローバル標準の開発文化（アジャイル等）</li>
+                            <li>英語使用率・レベルに応じた案件リスト</li>
+                            <li>技術×英語による国内最高峰の単価提示</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 19 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">セキュリティ・DevSecOps</h3>
+                    <div class="entry-id">19</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">安全性を「仕組み」で担保したい専門家。形骸化したチェック対応に呆れている層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>事後的な「犯人探し」文化への強いストレス</li>
+                            <li>承認フローばかりが増える本質的対策の無さ</li>
+                            <li>セキュリティ要請が開発を遅らせる「邪魔者」視</li>
+                            <li>インシデントへの孤独な恐怖と過重な責任</li>
+                            <li>専門性が理解されず一般エンジニアと同単価</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>Security by Designを掲げる先行組織</li>
+                            <li>脆弱性検知を自動化するDevSecOps推進枠</li>
+                            <li>専門知見を高く評価する「プレミアム報酬」</li>
+                            <li>経営課題としてセキュリティを扱う現場選定</li>
+                            <li>監査ではなく「守る」ための技術集中環境</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 20 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">ゼロイチ・新規事業</h3>
+                    <div class="entry-id">20</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">既存保守に飽き、真っ白なキャンバスに爆速でMVPを描きたい0→1志向者。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>既存システムの微調整ばかりの歯車生活</li>
+                            <li>技術選定の余地がない既定路線の退屈さ</li>
+                            <li>スピードを殺す形式的な会議と承認経路</li>
+                            <li>「前任者の呪い（負債）」を解くことの疲弊</li>
+                            <li>0から立ち上げる筋肉の衰えへの恐怖</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>1人目のエンジニアとしての全権限参画</li>
+                            <li>MVP爆速リリースをミッションとした案件</li>
+                            <li>失敗を許容する高速実験文化のスタートアップ</li>
+                            <li>技術選定から全レイヤーの意思決定権</li>
+                            <li>ビジネス要件をコードに変える純然たる0→1</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 21 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">ノーコード・ハイブリッド</h3>
+                    <div class="entry-id">21</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">「コードは手段」と割り切り、ノーコード等を駆使して爆速解決を狙う合理主義者。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>単純CRUD作成に膨大な時間を投じる徒労感</li>
+                            <li>高バリューな部分以外の実装による遅延</li>
+                            <li>「書けば書くほど負債」という実態への忌避</li>
+                            <li>低予算・短納期を断らざるを得ない既存手法</li>
+                            <li>新旧ハイブリッド開発への周囲の拒絶感</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>No-code活用で解決スピードを10倍にする枠</li>
+                            <li>本質的ロジックにのみコードを注ぐ合理環境</li>
+                            <li>引出しの広さを「コスト削減」として高評価</li>
+                            <li>AI×No-codeの先行実験的プロジェクト</li>
+                            <li>ビジネス価値第一を掲げる最先端開発チーム</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 22 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">社会貢献 (Impact)</h3>
+                    <div class="entry-id">22</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">消費を煽るだけのシステムに虚無感。医療、教育、環境等の社会課題に技術を投じたい層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>自分の技術が誰を幸せにしているか不透明さ</li>
+                            <li>子供に誇れる仕事でない、という負い目</li>
+                            <li>「単なる広告クリック増」への貢献への飽き</li>
+                            <li>社会貢献＝低報酬・低技術という固定観念</li>
+                            <li>意味ある事をしたいが手段が見つからぬ焦り</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>命や未来に関わる (Health/EdTech) 案件</li>
+                            <li>社会課題解決と高技術の共存プロジェクト</li>
+                            <li>現場の感謝がダイレクトに届くドメイン紹介</li>
+                            <li>高待遇×高インパクトの「意味ある」仕事</li>
+                            <li>貢献実感をモチベーションに変える伴走</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 23 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">SRE・コスト最適化</h3>
+                    <div class="entry-id">23</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">クラウドコスト肥大化に危機感。FinOps視点でインフラ効率を極めたい層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>毎月ドブに捨てられる放置リソースの不快感</li>
+                            <li>開発陣の課金への無頓着さとインフラの孤独</li>
+                            <li>削減成果がエンジニアの評価に直結セぬ不満</li>
+                            <li>複雑化するクラウド請求の解読困難さ</li>
+                            <li>低効率なアーキが利益を圧迫するもどかしさ</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>削減額の一部を評価反映する「利益連動型」</li>
+                            <li>アーキ再設計による「安くて速い」インフラ</li>
+                            <li>FinOps、SRE領域の専門職としての高評価</li>
+                            <li>最新クラウド機能を使い倒せる最適化専任枠</li>
+                            <li>無駄を削ぎ落とす美学を報酬に変える現場</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 24 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">技術顧問・非コーディング</h3>
+                    <div class="entry-id">24</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">シニア。実装は卒業し、戦略決定やベンダー選定、経営への進言をバリューとしたい層。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>「書かない＝バリュー低」という誤解の払拭</li>
+                            <li>週5拘束だが本質的価値は数時間の壁打ち</li>
+                            <li>不適切な設計判断を横目に見るストレス</li>
+                            <li>経営と開発の「言葉の翻訳」での疲弊</li>
+                            <li>純粋な知恵を売る枠が見つからない。</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>「コードを書かない」顧問・技術コンサル提案</li>
+                            <li>スポット（週1日・月数時間〜）の掛け持ち</li>
+                            <li>経営陣の対等なパートナーとしての壁打ち枠</li>
+                            <li>実績に基づくハイクラスエグゼクティブ案件</li>
+                            <li>決める事で組織を救う「いぶし銀」の評価</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 25 -->
+            <div class="strategy-card">
+                <div class="card-header">
+                    <h3 class="entry-title">データ基盤・ETL</h3>
+                    <div class="entry-id">25</div>
+                </div>
+                <div class="persona-section">
+                    <span class="section-label">Target Persona</span>
+                    <p class="persona-text">データの汚れ、壊れるパイプラインに辟易。信頼できる基盤を1から構築したい人。</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar pillar-pain">
+                        <h4>Pains (悩み)</h4>
+                        <ul class="list">
+                            <li>分析不能なほど汚れた生データの惨状</li>
+                            <li>音もなく壊れるパイプラインの孤独な復旧</li>
+                            <li>誰も見ていないゴミ同然のダッシュボード</li>
+                            <li>非エンジニアの適当なデータ要望の交通整理</li>
+                            <li>データ基盤への投資の低さへの失望感</li>
+                        </ul>
+                    </div>
+                    <div class="pillar pillar-solution">
+                        <h4>Solutions (解決策)</h4>
+                        <ul class="list">
+                            <li>1からdbt/Snowflake等を導入する再構築案件</li>
+                            <li>信頼性高く壊れないETL基盤の構築全権</li>
+                            <li>データの知見が経営を変える「データドリブン」</li>
+                            <li>データエンジニアリングへの深い投資環境</li>
+                            <li>活用を前提とした「生きた基盤」の創出</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Lancers Tech Agent Master Strategy Board. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function (e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.strategy-card');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
