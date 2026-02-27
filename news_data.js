@@ -4,11 +4,63 @@
 const newsData = [
     {
         date: "2026/02/27",
+        title: "ソフトバンク、第6回「日経Smart Work大賞2026」にて大賞を受賞",
+        url: "https://www.softbank.jp/corp/news/press/sbkk/2026/20260227_01/",
+        summary: "テクノロジー活用力と人材投資力が最高評価。IT人材の育成や管理職登用が評価された。",
+        entryIds: [12, 18],
+        stars: 5,
+        hook: "「Smart Work大賞」受賞企業での、最先端の働き方とキャリア自律を訴求。",
+        mapping: [
+            { id: 12, pain: "技術者が評価されない文化", appeal: "日経5つ星・大賞受賞。IT人材への投資を惜しまない、国内最高峰のエンジニア環境" },
+            { id: 18, pain: "キャリアの不透明感", appeal: "若手の積極登用と副業解禁。主体的なキャリア形成を会社が全力支援する文化" }
+        ]
+    },
+    {
+        date: "2026/02/27",
+        title: "NTTデータ、インドで5,000人を増員。1億ドル超の大型案件が倍増",
+        url: "https://jp.reuters.com/business/technology/ntt-data-india-hiring-5000-20260227/",
+        summary: "グローバルでのITコンサル・開発需要が急増。インド拠点での体制を大幅強化へ。",
+        entryIds: [13, 21],
+        stars: 4,
+        hook: "世界規模のダイナミックなプロジェクトへ参画できる、グローバルキャリアの提示。",
+        mapping: [
+            { id: 13, pain: "国内の小規模案件に飽きている", appeal: "1億ドル超のメガプロジェクト。世界が注目するITインフラ構築に携わる誇り" },
+            { id: 21, pain: "英語・グローバルへの壁", appeal: "世界4万人のエンジニアと連携。国内に居ながらグローバル基準の技術に触れる機会" }
+        ]
+    },
+    {
+        date: "2026/02/27",
+        title: "Rapidus、総額2,676億円の調達完了。政府・32社連合が国産半導体を支援",
+        url: "https://www.itmedia.co.jp/news/articles/2602/27/news101.html",
+        summary: "ソニー、NTT、トヨタ、ソフトバンク等32社が出資。2nm世代の量産化へ弾み。",
+        entryIds: [5, 12],
+        stars: 5,
+        hook: "「技術の日本」を取り戻す、国家プロジェクトへの貢献。低レイヤー・高度技術への挑戦。",
+        mapping: [
+            { id: 5, pain: "技術的な挑戦ができない現状", appeal: "2nm世代の最前線。ハード×ソフトの境界線で、一生モノの技術資産を築く" },
+            { id: 12, pain: "自分の仕事の社会への意義", appeal: "日本経済に20兆円貢献する壮大なミッション。エンジニアが技術で世界を動かす実感" }
+        ]
+    },
+    {
+        date: "2026/02/27",
+        title: "JustSystems、生成AI搭載の「ATOK MiRA」発表。文書修正をAIが支援",
+        url: "https://www.itmedia.co.jp/news/articles/2602/27/news042.html",
+        summary: "文章のトーン変更や誤字脱字の高度な修正機能をIMEに統合。業務効率化を加速。",
+        entryIds: [1, 10],
+        stars: 4,
+        hook: "AIツールを使いこなし、圧倒的な「ドキュメント生産性」を持つエンジニアへの進化。",
+        mapping: [
+            { id: 1, pain: "ドキュメント作成の多さに疲弊", appeal: "最新AI（ATOK MiRA等）を貸与。実装以外の無駄を省き、コードに集中できる環境" },
+            { id: 10, pain: "AIに代替される恐怖", appeal: "AIを「利用する側」に回り、実装力×AI活用力で市場価値を盤石にする戦略" }
+        ]
+    },
+    {
+        date: "2026/02/27",
         title: "デンソークリエイト、全工程支援AI「DC Agentiqs」提供開始",
-        url: "https://atpress.ne.jp/news/425514",
+        url: "https://www.agentiqs.app/",
         summary: "要件定義からテストまでAIがエンジニアを支援する新プラットフォーム。",
         entryIds: [12, 2],
-        stars: 5,
+        stars: 4,
         hook: "AIツールを導入し、開発者の「負債解消」を支援する現場を訴求。",
         mapping: [
             { id: 12, pain: "技術負債返済への無理解", appeal: "AIツールを積極導入し、負債解消を全肯定するエンジニア第一の環境" },
@@ -17,54 +69,15 @@ const newsData = [
     },
     {
         date: "2026/02/27",
-        title: "OpenAI、BCG・マッキンゼーら4社と「Frontier Alliances」始動",
-        url: "https://ledge.ai/articles/openai_frontier_alliances_bcg_mckinsey_accenture_capgemini",
-        summary: "企業へのAI導入の「実装ボトルネック」を解決するアライアンス。",
-        entryIds: [7, 13],
-        stars: 5,
-        hook: "企業のAI実装における「上流コンバル・PM」への職種シフトを提案。",
-        mapping: [
-            { id: 7, pain: "実装体力への将来不安", appeal: "実装から「組織へのAI実装PM」へのバリュー転換" },
-            { id: 13, pain: "ビジネス貢献の不透明さ", appeal: "AI導入のボトルネックを解く、事業直結の戦略的エンジニア" }
-        ]
-    },
-    {
-        date: "2026/02/27",
-        title: "日本語推論型LLM「GPT-OSS Swallow」「Qwen3 Swallow」公開",
-        url: "https://ledge.ai/articles/gpt_oss_qwen3_swallow_japanese_reasoning_llm_tokyo_science_aist",
-        summary: "東工大・産総研が開発。日本語性能と推論力を両立したオープンモデル。",
-        entryIds: [15, 5],
+        title: "NEC、OMO支援サービス「NeoSarf Loyalty Core Service」を発表",
+        url: "https://news.mynavi.jp/article/20260227-3132711/",
+        summary: "店舗・EC・アプリを融合。顧客行動データの統合とロイヤル顧客育成を支援。",
+        entryIds: [13, 4],
         stars: 4,
-        hook: "国産AI開発やOSS貢献を重視するテック企業の案件紹介。",
+        hook: "実店舗×デジタルの「OMOプロダクト」開発に携われる上流案件の訴求。",
         mapping: [
-            { id: 15, pain: "業務成果が社外から見えない", appeal: "国産LLM開発やOSS貢献を通じた、個人の技術ブランド強化" },
-            { id: 5, pain: "レガシー保守による成長停止", appeal: "LLMブームを機にしたモダンスタックへの再起動と移行支援" }
-        ]
-    },
-    {
-        date: "2026/02/27",
-        title: "OpenClaw（自律型AI）の利用急拡大。Googleが警告",
-        url: "https://ledge.ai/articles/openclaw_gemini_antigravity_usage_restrictions_202602",
-        summary: "AIエージェントの自律性が高まる中、開発者の役割が「監督者」へ変容。",
-        entryIds: [10, 1],
-        stars: 5,
-        hook: "AI時代に淘汰されない、シニアエンジニアの「監督能力」をバリュー化。",
-        mapping: [
-            { id: 10, pain: "若手との実装スピード比較", appeal: "「AIを監督する」役回りへのシフト。シニアの経験を生存戦略に" },
-            { id: 1, pain: "自分の適正単価が不明", appeal: "AIエージェント監督能力という新市場における高単価の提示" }
-        ]
-    },
-    {
-        date: "2026/02/27",
-        title: "防衛省、国会答弁資料に生成AIを試験導入。運用開始へ",
-        url: "https://ledge.ai/articles/mod_ai_diet_answer_assistant_trial_launch",
-        summary: "公共部門でのAI活用本格化。答弁作成アシスタント。",
-        entryIds: [2, 13],
-        stars: 4,
-        hook: "公共・大規模システムのAI化案件という、希少なキャリア選択肢。",
-        mapping: [
-            { id: 2, pain: "レガシー現場で試行機会ゼロ", appeal: "国家レベルの大規模システム×AIという、唯一無二のレジュメ作り" },
-            { id: 13, pain: "プロダクトへの愛着欠如", appeal: "公共インフラを支援する、圧倒的な社会貢献実感とサービス愛" }
+            { id: 13, pain: "ユーザーの反応が不明な虚無感", appeal: "店舗とネットを繋ぐ。リアルの反響が見える、やりがいのあるプロダクト開発" },
+            { id: 4, pain: "中間会社の中抜き不満", appeal: "一次請け体制でのエンド直案件。商流改善による高単価の実現" }
         ]
     },
     {
@@ -76,34 +89,21 @@ const newsData = [
         stars: 5,
         hook: "単なるAI導入ではなく「安全な活用」をリードするセキュリティ人材の需要を強調。",
         mapping: [
-            { id: 19, pain: "専門性が理解されず一般と同単価", appeal: "AIリスク時代のセキュリティ知見。プレミアム報酬での評価" },
-            { id: 9, pain: "技術負債による負のスパイラル", appeal: "安全性を無視した「地雷現場」を回避する、品質重視の環境提供" }
+            { id: 19, pain: "専門性が理解されず一般と同単価", appeal: "AIリスク時代のセキュリティ知見。希少価値に応じたプレミアム報酬の適用" },
+            { id: 9, pain: "技術負債による負のスパイラル", appeal: "安全性を無視した「炎上現場」を回避。品質と安全を重んじるプロジェクト選定" }
         ]
     },
     {
         date: "2026/02/27",
-        title: "NEC、OMOを支援する「NeoSarf Loyalty Core Service」を発表",
-        url: "https://jpn.nec.com/news/release/202602/2701.html",
-        summary: "オンラインとオフラインを融合する統合顧客基盤をクラウドで提供。",
-        entryIds: [13, 4],
-        stars: 4,
-        hook: "実店舗×デジタルの「OMOプロダクト」開発に携われる上流案件の訴求。",
-        mapping: [
-            { id: 13, pain: "ユーザーの反応が不明な虚無感", appeal: "OMO現場での直接的なフィードバックと事業貢献感" },
-            { id: 4, pain: "中間会社の中抜き不満", appeal: "一次請け体制でのエンド直案件。商流改善による高単価の実現" }
-        ]
-    },
-    {
-        date: "2026/02/27",
-        title: "最先端半導体Rapidus、エプソンが追加出資。日本の製造力強化へ",
-        url: "https://corporate.epson/ja/news/2026/260227.html",
-        summary: "2nm世代の国産半導体実現に向け、異業種からの支援が加速。",
-        entryIds: [12, 5],
+        title: "デジタルガレージ、共同創業者 伊藤穰一氏が取締役を退任",
+        url: "https://www.itmedia.co.jp/news/articles/2602/27/news123.html",
+        summary: "専務執行役員も退職。過去の資金提供問題への捜査資料公表が影響か。",
+        entryIds: [13, 1],
         stars: 3,
-        hook: "国産テクノロジーの「本丸」に近い低レイヤー・大規模開発案件の紹介。",
+        hook: "企業のガバナンスや透明性がキャリアの安定性に与える影響を考えるきっかけに。",
         mapping: [
-            { id: 12, pain: "技術の正論が通らない組織", appeal: "国家プロジェクト。職人気質のエンジニアが尊重される文化" },
-            { id: 5, pain: "市場から取り残される恐怖", appeal: "次世代半導体×低レイヤー。唯一無二の技術スタックへの転向" }
+            { id: 13, pain: "会社の将来への倫理的不安", appeal: "透明性の高い経営とクリーンなガバナンスを持つ企業での、長期的な信頼構築" },
+            { id: 1, pain: "キャリアの急な中断への懸念", appeal: "リスク管理の行き届いた安定企業。個人の経歴に傷をつけない、誠実な組織文化" }
         ]
     }
 ];
