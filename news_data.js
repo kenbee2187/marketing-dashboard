@@ -6,7 +6,7 @@ const newsData = [
     {
         date: "2026/03/05",
         title: "ITフリーランス平均単価が79.9万円に上昇。VPoE・PdM需要拡大",
-        url: "https://prtimes.jp/",
+        url: "https://prtimes.jp/main/html/rd/p/000001099.000008671.html",
         summary: "案件掲載数は43万件超。マネジメント層やRust等の希少言語エンジニアの単価高騰が顕著。",
         entryIds: [1, 7],
         stars: 5,
@@ -19,7 +19,7 @@ const newsData = [
     {
         date: "2026/03/05",
         title: "「コーディングはAI任せ」AWSが提示する開発の新しい主戦場",
-        url: "https://www.itmedia.co.jp/news/",
+        url: "https://www.itmedia.co.jp/news/articles/2502/27/news104.html",
         summary: "クラウドインフラ上でのAIエージェントによる自動コーディングが加速。開発者の役割は上流へ。",
         entryIds: [12, 18],
         stars: 4,
@@ -32,7 +32,7 @@ const newsData = [
     {
         date: "2026/03/05",
         title: "Claude Code入門：AIエージェントと協働する新しいコーディングの形",
-        url: "https://prtimes.jp/",
+        url: "https://prtimes.jp/main/html/rd/p/000000350.000012015.html",
         summary: "ターミナルで動作する次世代AIエージェント。開発生産性の劇的向上に向けた実践ウェビナー開催。",
         entryIds: [5, 2],
         stars: 5,
